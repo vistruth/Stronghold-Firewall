@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import tkinter
 import tkinter as tk
 import customtkinter
@@ -57,7 +58,7 @@ right_password.pack(pady=12, padx=10)
 button = customtkinter.CTkButton(master=frame, text="Login", command=check_credentials)
 button.pack(pady=12, padx=10)
 
-logo = PhotoImage(file="/home/kali/Stronghold_firewall/custom/logo.png")
+logo = PhotoImage(file="logo.png")
 label = tk.Label(frame, image=logo)
 label.place(x=90, y=250)
 
@@ -273,7 +274,7 @@ button.grid(row=5, column=0, sticky="news", padx=20, pady=10)
 # SUBPROCESS AND BUTTON TO SHOW SYNTAX HELP
 def inboundhelp():
     rules_window = tk.Toplevel(window2)
-    ufw_rules = subprocess.run(["cat", "syntaxhelp.txt"], stdout=subprocess.PIPE)
+    ufw_rules = subprocess.run(["cat", "Syntax_help.txt"], stdout=subprocess.PIPE)
     rules_text = ufw_rules.stdout.decode()
     rules_frame = tk.Frame(rules_window)
     rules_frame.pack(fill="both", expand=True)
@@ -355,9 +356,9 @@ def submit_ip_address(source_ip_address, subnet_mask):
                     tkinter.messagebox.showwarning(title="ERROR", message="Source out of range")
 
                     if 0 > int_subnet_octet > 32:
-                        tkinter.messagebox.showwarning(title="ERROR", message="Invalid IPp Address or Subnet Mask")
+                        tkinter.messagebox.showwarning(title="ERROR", message="Invalid IP Address or Subnet Mask")
             except ValueError:
-                tkinter.messagebox.showwarning(title="ERROR", message="Invalid IPpp Address or Subnet Mask")
+                tkinter.messagebox.showwarning(title="ERROR", message="Invalid IP Address or Subnet Mask")
             network_address = [str(int_octet & int_subnet_octet) for octet, subnet_octet in zip(octets, subnet_octets)]
             network_address = '.'.join(network_address)
             return network_address
